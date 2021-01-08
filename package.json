@@ -4,7 +4,10 @@
   "description": "Создаем репозиторий на GitHub с двумя файлами\r .gitignore\r MIT License\r Клонируем репозиторий проекта на локальный компьютер, командой: \r git clone url_repo \r в консоли Git Bash, открытой в отведенной папке или диске на вашем компьютере\r Заходим внутрь клонированного репозитория, командой: \r cd repo_name \r в консоли Git Bash\r Открываем папку проекта в редакторе кода VSCode, командой:\t\r  code .\r Открываем TERMINAL в редакторе кода VSCode (внизу окна редактора)\r Инициализируем (создаем) файл package.json в нашем проекте, командой: \r npm init -y \r в TERMINAL - слева в структуре проекта должен появится файл package.json\r Устанавливаем пакеты Webpack через TERMINAL, командой: \r npm install --save-dev webpack webpack-cli",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack-dev-server --env.mode development",
+    "build": "webpack --env.mode production",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
@@ -21,17 +24,29 @@
     "@babel/core": "^7.12.10",
     "@babel/plugin-proposal-class-properties": "^7.12.1",
     "@babel/preset-env": "^7.12.11",
+    "autoprefixer": "^10.2.1",
     "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^5.0.1",
     "file-loader": "^6.2.0",
+    "friendly-errors-webpack-plugin": "^1.7.0",
     "handlebars": "^4.7.6",
     "handlebars-loader": "^1.7.1",
     "html-loader": "^1.3.2",
+    "html-webpack-plugin": "^4.5.1",
+    "mini-css-extract-plugin": "^1.3.3",
+    "optimize-css-assets-webpack-plugin": "^5.0.4",
+    "postcss": "^8.2.3",
+    "postcss-loader": "^4.1.0",
+    "style-loader": "^2.0.0",
     "url-loader": "^4.1.1",
-    "webpack": "^5.12.1",
-    "webpack-cli": "^4.3.1",
-    "webpack-dev-server": "^3.11.1"
+    "webpackbar": "^5.0.0-3"
   },
   "dependencies": {
-    "webpack-merge": "^5.7.3"
+    "gh-pages": "^3.1.0",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^5.1.4"
   }
 }

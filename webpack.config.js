@@ -1,8 +1,11 @@
 const path = require("path");
 const { merge } = require("webpack-merge");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
+const WebpackBar = require("webpackbar");
 
 const loadModeConfig = (env) => {
-  require(`./build-utils/${env.mode}.config`)(env);
+  require(`./build-utils/${env.mode}.config.js`)(env);
 };
 
 module.exports = (env) =>
@@ -23,8 +26,8 @@ module.exports = (env) =>
           use: ["babel-loader"],
         },
         {
-            test: /\.html$/,
-            use: ["html-loader"]
+          test: /\.html$/,
+          use: ["html-loader"],
         },
         {
           test: /\.(gif|png|jpe?g|svg)$/,
@@ -39,9 +42,16 @@ module.exports = (env) =>
           ],
         },
         {
-            test: /\.hbs$/,
-            use: ["handlebars-loader"]
+          test: /\.hbs$/,
+          use: ["handlebars-loader"],
         },
       ],
     },
-  });
+    plugins: [
+      new CleanWebpackPlugin(),
+      new FriendlyErrorsWebpackPlugin(),
+      new WebpackBar(),
+    ],
+  },
+  loadModeConfig(env)
+  );
