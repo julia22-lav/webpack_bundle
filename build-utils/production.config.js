@@ -28,7 +28,7 @@ module.exports = (env) => ({
         useShortDoctype: true,
       },
     }),
-    new MiniCssExtractPlugin({filename: "styles.css"}),
+    new MiniCssExtractPlugin({ filename: "styles.css" }),
     new OptimizeCssAssetsPlugin(),
   ],
 });
